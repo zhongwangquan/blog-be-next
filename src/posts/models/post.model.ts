@@ -39,8 +39,10 @@ export class PostItemModel {
   public readonly updatedAt: Date
 
   @Field(() => PostItemModel, { nullable: true })
+  // eslint-disable-next-line no-use-before-define
   public readonly prev: PostItemModel | null
 
   @Field(() => PostItemModel, { nullable: true })
+  // eslint-disable-next-line no-use-before-define
   public readonly next: PostItemModel | null
 }

@@ -370,6 +370,7 @@ input PaginationInput {
 }
 
 type Mutation {
+  register(input: RegisterInput!): UserModel!
   createTOTP: TOTPModel!
   validateTOTP(input: ValidateTOTPInput!): UserModel!
   createRecoveryCodes: RecoveryCodeModel!
@@ -429,6 +430,12 @@ type Mutation {
   publicCovers(ids: [ID!]!): BatchUpdateModel!
   updateGlobalSettingById(input: UpdateGlobalSettingInput!): GlobalSettingModel!
   createPostStatistics(input: CreatePostStatisticsInput!): PostStatisticsModel!
+}
+
+input RegisterInput {
+  email: String!
+  username: String!
+  password: String!
 }
 
 input ValidateTOTPInput {

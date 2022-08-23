@@ -36,12 +36,12 @@ export class ConfigService {
     const userName = this.get('DATABASE_USER')
     const userPwd = this.get('DATABASE_PWD')
     const collection = this.get('DATABASE_COLLECTION')
+    const authName = this.get('DATABASE_AUTHNAME')
 
     const prefix = 'mongodb://'
     const auth = `${userName}:${userPwd}@`
-    const connection = `${host}:${port}/${collection}`
-
-    return this.isEnvProduction ? `${prefix}${auth}${connection}` : `${prefix}${connection}`
+    const connection = `${host}:${port}/${collection}?${authName}`
+    return this.isEnvProduction ? `${prefix}${auth}${connection}?` : `${prefix}${auth}${connection}`
   }
 
   public getBandwagonKeys(): BandwagonKey {
@@ -83,6 +83,7 @@ export class ConfigService {
       DATABASE_USER: this.isEnvProduction ? Joi.string().required() : Joi.string().optional(),
       DATABASE_PWD: this.isEnvProduction ? Joi.string().required() : Joi.string().optional(),
       DATABASE_COLLECTION: Joi.string().required(),
+      DATABASE_AUTHNAME: Joi.string().required(),
       BANDWAGON_SECRET_KEY: Joi.string().required(),
       BANDWAGON_SERVER_ID: Joi.string().required(),
       IP_STACK_ACCESS_KEY: Joi.string().required(),
