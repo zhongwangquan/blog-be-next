@@ -13,8 +13,8 @@ export class LoginInput {
   @IsNotEmpty()
   public readonly password: string
 
-  @Field()
-  @IsString()
-  @IsNotEmpty()
-  public readonly token: string
+  // @Field()
+  // @IsString()
+  // @IsNotEmpty()
+  // public readonly token: string
 }

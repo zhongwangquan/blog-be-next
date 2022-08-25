@@ -359,7 +359,6 @@ type Query {
 input LoginInput {
   email: String!
   password: String!
-  token: String!
 }
 
 input PaginationInput {

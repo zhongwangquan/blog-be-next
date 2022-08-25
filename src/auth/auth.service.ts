@@ -63,19 +63,19 @@ export class AuthService {
   }
 
   public async login(loginInput: LoginInput) {
-    const { email, password, token } = loginInput
-    const { success, 'error-codes': errorCodes } = await this.verifyGoogleRecaptchaToken(token)
+    const { email, password } = loginInput
+    // const { success, 'error-codes': errorCodes } = await this.verifyGoogleRecaptchaToken(token)
+    const res = await this.validateUser(email, password)
+    return this.generateJWT(email, res)
 
-    if (success) {
-      const res = await this.validateUser(email, password)
-      return this.generateJWT(email, res)
-    }
+    // if (success) {
+    // }
 
-    throw new AuthenticationError(
-      errorCodes
-        ? errorCodes.toString()
-        : 'Google Recaptcha verification failed. Please try again!',
-    )
+    // throw new AuthenticationError(
+    //   errorCodes
+    //     ? errorCodes.toString()
+    //     : 'Google Recaptcha verification failed. Please try again!',
+    // )
   }
 
   public async register(registerInput: RegisterInput) {
